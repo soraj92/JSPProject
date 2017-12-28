@@ -1,12 +1,19 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jo
+  Date: 2017-12-25
+  Time: 오전 4:33
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+    pageEncoding="UTF-8"%>
+<!doctype>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/a.css">
+<link rel="stylesheet" href="../css/a.css">
+<!-- <link href="../css/narrow-jumbotron.css" rel="stylesheet"> -->
 <style>
 #navBar {
 	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.125), 0 4px 5px 0
@@ -87,67 +94,61 @@ main {
 	
 }
 </style>
-<title>Insert title here</title>
+
 </head>
 <body>
 	<div class="containers">
 		<header>
-			<%@include file="page/navBar.jsp"%>
+			<%@include file="navBar.jsp"%>
 		</header>
 		<div class="content">
 			<nav>
-				<jsp:include page="page/catagory.jsp"></jsp:include>
+				<jsp:include page="catagory.jsp"></jsp:include>
 			</nav>
 			<main>
-			<div class="col-lg-9">
-
-				<div id="carouselExampleIndicators" class="carousel slide my-4"
-					data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0"
-							class="active"></li>
-					</ol>
-					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item active">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
-						</div>
-					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators"
-						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">Next</span>
-					</a>
+			<div class="container">
+				<div>
+					<h3 class="text-muted" style="text-align: center">글 제목</h3>
 				</div>
 
-				<div class="row">
+				<main role="main">
 
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="card h-100">
-							<a href="content.do"><img class="card-img-top" src="http://placehold.it/700x400"
-								alt=""></a>
-							<div class="card-body">
-								<h4 class="card-title">
-									<a href="content.do">Item One</a>
-								</h4>
-								<h5>$24.99</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-									adipisicing elit. Amet numquam aspernatur!</p>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">&#9733; &#9733; &#9733;
-									&#9733; &#9734;</small>
-							</div>
-						</div>
+				<div class="jumbotron">
+					<h1 class="display-3">Jumbotron heading</h1>
+					<p class="lead">Cras justo odio, dapibus ac facilisis in,
+						egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor
+						mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+					<p>
+						<a class="btn btn-lg btn-success" href="#" role="button">Sign
+							up today</a>
+					</p>
+				</div>
+
+				<div class="row marketing">
+					<div class="col-lg-6">
+						<h4>가격</h4>
+						<p>15000원</p>
+
+						<h4>구입시기</h4>
+						<p>2017년 5월 30일</p>
+
+						<h4>상품 설명</h4>
+						<p>거의 안썼음</p>
 					</div>
 
+					<div class="col-lg-6">
+						<h4>거래방식</h4>
+						<p>직거래</p>
+
+						<h4>거래 지역</h4>
+						<p>서울</p>
+
+						<!-- <h4>Subheading</h4>
+            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p> -->
+					</div>
 				</div>
+
+				</main>
 			</div>
 			</main>
 
