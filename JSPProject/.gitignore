@@ -4,6 +4,7 @@
 
 ### Eclipse ###
 
+*.MF
 .metadata
 bin/
 tmp/
