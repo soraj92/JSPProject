@@ -142,7 +142,7 @@ main {
 					<div class="col-lg-6">
 						<h4>거래방식</h4>
 						<%
-							if (vo.getChoice_way() == 1) {
+							if (vo.getChoice_way() == 0) {
 						%>
 						<p>직거래</p>
 						<%

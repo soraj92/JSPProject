@@ -23,7 +23,7 @@ public class BoardDAO {
 		BoardVO vo = null;
 		
 		con = getConnection();
-		String sql = "select * from testTable where board_num = ?";
+		String sql = "select * from boardtbl where board_num = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -42,7 +42,6 @@ public class BoardDAO {
 				
 				
 				vo = new BoardVO(board_num, board_subject, price, choice_way, buyday, space, information, file);
-				System.out.println(vo.getBoard_subject());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
