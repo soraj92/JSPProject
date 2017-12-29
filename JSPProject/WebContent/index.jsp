@@ -235,7 +235,7 @@ main {
 <body>
 	<div class="containers">
 		<header>
-			<%@include file="page/navBar.jsp"%>
+		<jsp:include page="page/navBar.jsp"></jsp:include>
 		</header>
 		<div class="content">
 			<nav>
