@@ -15,7 +15,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/a.css">
-<!-- <link href="../css/narrow-jumbotron.css" rel="stylesheet"> -->
 <style>
 #navBar {
 	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.125), 0 4px 5px 0
