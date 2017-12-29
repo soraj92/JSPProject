@@ -11,7 +11,7 @@ create table TotalTable(
     img varchar(500) , -- 첨부할 사진
     board_date date , -- 글작성 날짜
     board_count int , -- 조회수 
-    primary key(board_num)
+    primary key(board_num) -- 기본키
 );
 
 
