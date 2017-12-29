@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import basic.Action;
 import basic.ActionForward;
+import dao.BoardDAO;
+import vo.BoardVO;
 
 public class MoveAction implements Action {
 
@@ -17,7 +19,12 @@ public class MoveAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		return new ActionForward(path,true);
+		BoardDAO dao = new BoardDAO();
+		BoardVO vo = dao.getBoard(1);//board_num
+		
+		request.setAttribute("vo", vo);
+		
+		return new ActionForward(path,false);
 	}
 
 }
