@@ -39,6 +39,8 @@ public class BoardDAO {
 				String space = rs.getString("space");
 				String information = rs.getString("information");
 				String file = rs.getString("file");
+				
+				
 				vo = new BoardVO(board_num, board_subject, price, choice_way, buyday, space, information, file);
 				System.out.println(vo.getBoard_subject());
 			}
