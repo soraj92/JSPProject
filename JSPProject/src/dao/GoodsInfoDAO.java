@@ -73,20 +73,20 @@ public class GoodsInfoDAO {
 		GoodsInfoVO vo = null;
 		con = getConnection();
 		
-	
+/*	
 		pstmt = con.prepareStatement("select max(board_num) from boardtbl");
 
 		con.setAutoCommit(false); // 커밋을 수동으로 바꿔 놓는다. 
 
 		rs = pstmt.executeQuery();
-		
+		*/
 		
 		// 뿌리기 위해 가져와야 할 것 : 글번호, 상품명, 희망 가격 
 		String sql = "select * from boardtbl where board_num=?";  // board_num 에 random_num 을 넣어서(최신글 중에) 무작위로 가져온다. 
 		// for문돌려서.. list_num 을 랜덤으로 준담에..가져오면 안되남..
 		// 카테고리별 각각 몇개 이렇게 돌려야하나?
 		
-		int random_num = 0; // 수정중
+		int random_num = 0; // 수정중 tnwjkdwjdwd
 		try
 		{
 			pstmt = con.prepareStatement(sql);
