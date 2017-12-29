@@ -6,16 +6,22 @@ public class GoodsInfoVO {
 	private String username; // 작성자
 	private String board_subject; // 글제목
 	private int price; // 희망가격
-	private int choice_way;// 직거래 택배거래 선택 
+	private int choice_way;// 직거래 택배거래 선택 [0: 직거래, 1: 택배거래]
 	private String product_type; // 카테고리별 상품 분류
 	private String purchasing_time; // 구입한 시기
-	private String trade_area; // 거래지역
+	private String trade_area; // 거래지역 (직거래일경우에만 사용)
+	private String goods_info;// 상품 정보
 	private String img; // 첨부사진
 	private String board_date;// 글작성날짜
-	private String goods_info;// 상품 설명
-	private int board_count; // 조회수
+	private int trade_state; // 거래 현황 (1: 판매중, 2: 거래중, 3:판매완료)
 	
 	
+	public int getTrade_state() {
+		return trade_state;
+	}
+	public void setTrade_state(int trade_state) {
+		this.trade_state = trade_state;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -82,13 +88,7 @@ public class GoodsInfoVO {
 	public void setGoods_info(String goods_info) {
 		this.goods_info = goods_info;
 	}
-	public int getBoard_count() {
-		return board_count;
-	}
-	public void setBoard_count(int board_count) {
-		this.board_count = board_count;
-	}
-	
+
 
 	
 }
