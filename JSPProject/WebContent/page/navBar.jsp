@@ -16,7 +16,6 @@
         String requestURI = request.getRequestURI();// /Board/qwrite.do
 		String contextPath = request.getContextPath();// /Board
 		String cmd = requestURI.substring(contextPath.length());// /qwrite.do
-		System.out.println(contextPath);
 		if(requestURI.contains("index.jsp"))//cmd.equals("/index.jsp")
 		{
         %>
