@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
     <nav class="navbar navbar-expand-md navbar-dark navbar-light fixed-top" id="navBar">
 
         <!--style="background-color: rgba(87,182,230,0.75)"-->
@@ -42,6 +44,10 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
+            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
+            <button class="btn btn-primary" onclick="window.open('page/login.jsp')">로그인</button></a>
+			<a role="button" aria-disabled="true"><button class="btn btn-secondary" onclick="window.open('page/register.jsp')">회원가입</button></a>
+			
         </div>
     </nav>
 </body>
