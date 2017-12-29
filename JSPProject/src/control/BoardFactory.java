@@ -20,7 +20,7 @@ public class BoardFactory {
 	{
 		if(cmd.equals("/content.do"))
 		{
-			action = new MoveAction("page/Content.jsp");
+			action = new MoveAction("page/BoardContent.jsp");
 		}
 		return action;
 	}

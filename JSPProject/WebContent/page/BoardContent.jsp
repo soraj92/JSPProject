@@ -5,8 +5,9 @@
   Time: 오전 4:33
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype>
 <head>
 <meta charset="UTF-8">
@@ -105,16 +106,17 @@ main {
 			<nav>
 				<jsp:include page="catagory.jsp"></jsp:include>
 			</nav>
-			<main>
+			<main> <%
+ 	BoardVO vo = (BoardVO) request.getAttribute("vo");
+ %>
 			<div class="container">
 				<div>
-					<h3 class="text-muted" style="text-align: center">글 제목</h3>
+					<h3 class="text-muted" style="text-align: center"><%=vo.getBoard_subject()%></h3>
 				</div>
 
 				<main role="main">
-
 				<div class="jumbotron">
-					<h1 class="display-3">Jumbotron heading</h1>
+					<h1 class="display-3">뭐냐</h1>
 					<p class="lead">Cras justo odio, dapibus ac facilisis in,
 						egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor
 						mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -127,19 +129,29 @@ main {
 				<div class="row marketing">
 					<div class="col-lg-6">
 						<h4>가격</h4>
-						<p>15000원</p>
+						<p><%=vo.getPrice()%>원
+						</p>
 
 						<h4>구입시기</h4>
-						<p>2017년 5월 30일</p>
+						<p><%=vo.getBuyday()%></p>
 
 						<h4>상품 설명</h4>
-						<p>거의 안썼음</p>
+						<p><%=vo.getInformation()%></p>
 					</div>
 
 					<div class="col-lg-6">
 						<h4>거래방식</h4>
+						<%
+							if (vo.getChoice_way() == 1) {
+						%>
 						<p>직거래</p>
-
+						<%
+							} else {
+						%>
+						<p>택배거래</p>
+						<%
+							}
+						%>
 						<h4>거래 지역</h4>
 						<p>서울</p>
 
