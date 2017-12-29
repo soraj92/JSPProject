@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="../css/a.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/a.css">
 <!-- <link href="../css/narrow-jumbotron.css" rel="stylesheet"> -->
 <style>
 #navBar {
