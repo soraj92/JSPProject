@@ -24,11 +24,11 @@ public class BoardServlet extends HttpServlet {
 		String cmd = requestURI.substring(contextPath.length());// /qwrite.do
 		
 		//필수 기본 작업
-		BoardFactory init = BoardFactory.getInstance();
-		Action form = init.formInit(cmd);
+		BoardFactory acinit = BoardFactory.getInstance();
+		Action action = acinit.formInit(cmd);
 		
 		ActionForward ff = null;
-		ff = form.execute(request, response);
+		ff = action.execute(request, response);
 		
 		if(ff.isRedirect())
 			response.sendRedirect(ff.getPath());

@@ -14,15 +14,15 @@ public class BoardFactory {
 			init = new BoardFactory();
 		return init;
 	}
-	Action form = null;
+	Action action = null;
 	
 	public Action formInit(String cmd)
 	{
 		if(cmd.equals("/content.do"))
 		{
-			form = new MoveAction("page/Content.jsp");
+			action = new MoveAction("page/Content.jsp");
 		}
-		return form;
+		return action;
 	}
 
 }
