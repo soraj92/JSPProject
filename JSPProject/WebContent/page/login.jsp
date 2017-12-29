@@ -21,6 +21,7 @@
 		<a class="navbar-brand" href="main.jsp">jsp 게시판 웹사이트</a>
 		</div>
 	</nav> -->
+	
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
