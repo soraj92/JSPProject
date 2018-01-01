@@ -35,13 +35,18 @@ public class BoardDAO {
 				String board_subject = rs.getString("board_subject");
 				int price  = rs.getInt("price");
 				int choice_way  = rs.getInt("choice_way");
-				String buyday = rs.getString("buyday");
-				String space = rs.getString("space");
-				String information = rs.getString("information");
-				String file = rs.getString("file");
+				String username = rs.getString("username"); // 작성자
+				String product_type = rs.getString("product_type"); // 카테고리별 상품 분류
+				String purchasing_time = rs.getString("purchasing_time"); // 구입한 시기
+				String trade_area = rs.getString("trade_area"); // 거래지역
+				String goods_info = rs.getString("goods_info");// 상품 설명
+				String img = rs.getString("img"); // 첨부사진
+				String board_date = rs.getString("board_date");// 글작성날짜
+				int trade_state  = rs.getInt("trade_state"); // 거래 현황
 				
 				
-				vo = new BoardVO(board_num, board_subject, price, choice_way, buyday, space, information, file);
+				vo = new BoardVO(board_num, board_subject, username, choice_way, price,product_type,
+						purchasing_time, trade_area, goods_info, img, board_date, trade_state);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
