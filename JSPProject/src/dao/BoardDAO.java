@@ -45,7 +45,7 @@ public class BoardDAO {
 				int trade_state  = rs.getInt("trade_state"); // 거래 현황
 				
 				
-				vo = new BoardVO(board_num, board_subject, username, choice_way, price,product_type,
+				vo = new BoardVO(board_num, board_subject, username, price, choice_way,product_type,
 						purchasing_time, trade_area, goods_info, img, board_date, trade_state);
 			}
 		} catch (SQLException e) {

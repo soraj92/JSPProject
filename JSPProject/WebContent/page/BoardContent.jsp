@@ -133,10 +133,10 @@ main {
 						</p>
 
 						<h4>구입시기</h4>
-						<p><%=vo.getBuyday()%></p>
+						<p><%=vo.getPurchasing_time()%></p>
 
 						<h4>상품 설명</h4>
-						<p><%=vo.getInformation()%></p>
+						<p><%=vo.getGoods_info()%></p>
 					</div>
 
 					<div class="col-lg-6">
