@@ -19,7 +19,7 @@ public class GoodsInfoFactory {
 	
 	public Action formgif(String cmd)
 	{
-		if(cmd.equals("/main.do"))
+		if(cmd.equals("/main.com"))
 		{
 			action =  new MainListAction("index.jsp");
 		}
