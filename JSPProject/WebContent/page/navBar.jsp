@@ -14,21 +14,10 @@
         <!--style="background-color: rgba(87,182,230,0.75)"-->
 
         <div class="container">
-       <%
-        String requestURI = request.getRequestURI();// /Board/qwrite.do
-		String contextPath = request.getContextPath();// /Board
-		String cmd = requestURI.substring(contextPath.length());// /qwrite.do
-		if(requestURI.contains("index.jsp"))//cmd.equals("/index.jsp")
-		{
-        %>
-            <a class="navbar-brand" href="index.jsp">
+       
+            <a class="navbar-brand" href="../../../../../../../../../JSPProject/index.jsp">
                 SHOP
             </a>
-        <%}else{ %>
-	        <a class="navbar-brand" href="../index.jsp">
-	                SHOP
-            </a>
-       <%} %> 
 
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarsExampleDefault"
