@@ -29,3 +29,8 @@ insert into BoardTbl(username, board_subject, price, choice_way, product_type, p
  values('juhye','한정판!! 무민머그컵 팜',5000,1,'c-t','2017년 11월','서울','상품설명을 적으세요','4.png','2017-12-3',1);
  
  select*from boardtbl;
+ 
+ update boardtbl set img ="450x3001.png" where username ="dahye";
+ update boardtbl set img ="450x3002.png" where username ="jungmin";
+ update boardtbl set img ="450x3003.png" where username ="juhye";
+ update boardtbl set img ="450x3004.png" where username ="sora";

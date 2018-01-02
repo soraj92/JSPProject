@@ -94,8 +94,8 @@ public class GoodsInfoDAO {
 		con = getConnection();
 		// 페이징처리는 나중에, 우선 뿌리는것 부터 
 		// 무슨 기준으로 가져올 것인가? ? ? 우선은 [카테고리 상관없이] 최신글 기준으로
-		String sql = "select board_num,board_subject,price,img from shopdb order by board_num desc";
-		// 메인리스트에서  눈에 보이는 정보는  'board_subject(제목),price(가격),img(이미지)' 
+		String sql = "select board_num,board_subject,price,img,goods_info from boardtbl order by board_num desc";
+		// 메인리스트에서  눈에 보이는 정보는  'board_subject(제목),price(가격),img(이미지)' ,goods_info(상품설명)
 		try
 		{
 			pstmt = con.prepareStatement(sql);
@@ -107,6 +107,7 @@ public class GoodsInfoDAO {
 				vo.setBoard_subject(rs.getString("board_subject"));
 				vo.setPrice(rs.getInt("price"));
 				vo.setImg(rs.getString("img"));
+				vo.setGoods_info(rs.getString("goods_info"));
 				list.add(vo);
 			}
 			
