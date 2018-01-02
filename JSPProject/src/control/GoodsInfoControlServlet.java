@@ -15,7 +15,7 @@ import basic.ActionForward;
 
 
 
-@WebServlet({"/GoodsInfoControlServlet","*.do"})
+@WebServlet("*.goods")
 public class GoodsInfoControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
