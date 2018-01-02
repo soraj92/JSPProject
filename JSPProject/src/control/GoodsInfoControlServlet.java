@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import basic.Action;
 import basic.ActionForward;
 
-@WebServlet("*.goods")
+@WebServlet("*.com")
 public class GoodsInfoControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

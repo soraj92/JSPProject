@@ -16,6 +16,27 @@ public class GoodsInfoVO {
 	private int trade_state; // 거래 현황 (1: 판매중, 2: 거래중, 3:판매완료)
 	
 	
+	public GoodsInfoVO() {
+		super();
+	}
+
+	public GoodsInfoVO(String username, String board_subject, int price, int choice_way, String product_type,
+			String purchasing_time, String trade_area, String goods_info, String img, String board_date,
+			int trade_state) {
+		super();
+		this.username = username;
+		this.board_subject = board_subject;
+		this.price = price;
+		this.choice_way = choice_way;
+		this.product_type = product_type;
+		this.purchasing_time = purchasing_time;
+		this.trade_area = trade_area;
+		this.goods_info = goods_info;
+		this.img = img;
+		this.board_date = board_date;
+		this.trade_state = trade_state;
+	}
+	
 	public int getTrade_state() {
 		return trade_state;
 	}

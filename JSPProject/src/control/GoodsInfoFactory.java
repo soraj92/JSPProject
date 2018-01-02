@@ -2,6 +2,7 @@ package control;
 
 import basic.Action;
 import boardaction.MainListAction;
+import boardaction.WriteAction;
 
 public class GoodsInfoFactory {
 
@@ -19,9 +20,13 @@ public class GoodsInfoFactory {
 	
 	public Action formgif(String cmd)
 	{
-		if(cmd.equals("/index.jsp"))
+		if(cmd.equals("/index.com"))
 		{
 			action =  new MainListAction("index.jsp");
+			
+		}else if(cmd.equals("/write.com")) {
+			
+			action =  new WriteAction("index.com");
 		}
 		
 		return action;

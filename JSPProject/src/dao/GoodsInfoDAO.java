@@ -59,11 +59,40 @@ public class GoodsInfoDAO {
 	//----------------------------------------------------------------------------------------------------------------
 
 	// 글 등록하기 (사진 포함), 회원 정보 가져 와서 글에 넣어 줌 (작성자 이름) ------------------------------------
-	public int board_insert(String username) {
+	public int board_insert(GoodsInfoVO vo) {
 		int result = 0;
 		con = getConnection();
-		String sql = "insert into BoardTbl(username, board_subject, price, choice_way, product_type, purchasing_time, trade_area, goods_info, img, board_date, trade_state) values(?,?,?,?,?,?,?,?,now(),?);";
-
+		String sql = "insert into BoardTbl(username, board_subject, price, choice_way, product_type, purchasing_time, trade_area, goods_info, img, board_date, trade_state) "
+				+ "values(?,?,?,?,?,?,?,?,?,now(),?);";
+		// 글 등록시 넣을 정보들 board_num 과 날자를 제외한 모든 정보 
+		try
+		{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getUsername()); // 작성자
+			pstmt.setString(2, vo.getBoard_subject()); // 글 제목
+			pstmt.setInt(3, vo.getPrice()); // 가격
+			pstmt.setInt(4, vo.getChoice_way()); // 거래유형 선택
+			pstmt.setString(5, vo.getProduct_type()); // 상품 분류
+			pstmt.setString(6, vo.getPurchasing_time());//구입한 시기
+			pstmt.setString(7, vo.getTrade_area()); // 거래지역
+			pstmt.setString(8, vo.getGoods_info());// 상품 정보 
+			pstmt.setString(9, vo.getImg());// 첨부 사진 이름
+			pstmt.setInt(10, vo.getTrade_state());// 거래 현황 
+			result = pstmt.executeUpdate();
+				if(result > 0)
+				{
+					System.out.println("DAO입력 완료");
+				}else {
+					System.out.println("DAO입력 실패");
+				}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			close(pstmt);
+			close(con);
+		}
 		return result;
 	}
 
