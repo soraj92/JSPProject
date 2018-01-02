@@ -133,16 +133,16 @@ main {
 						</p>
 
 						<h4>구입시기</h4>
-						<p><%=vo.getBuyday()%></p>
+						<p><%=vo.getPurchasing_time()%></p>
 
 						<h4>상품 설명</h4>
-						<p><%=vo.getInformation()%></p>
+						<p><%=vo.getGoods_info()%></p>
 					</div>
 
 					<div class="col-lg-6">
 						<h4>거래방식</h4>
 						<%
-							if (vo.getChoice_way() == 1) {
+							if (vo.getChoice_way() == 0) {
 						%>
 						<p>직거래</p>
 						<%

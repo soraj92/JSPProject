@@ -20,10 +20,10 @@ public class MoveAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		BoardDAO dao = new BoardDAO();
-		BoardVO vo = dao.getBoard(1);//board_num
+		BoardVO vo = dao.getBoard(3);//board_num
 		
 		request.setAttribute("vo", vo);
-		
+		System.out.println(vo);
 		return new ActionForward(path,false);
 	}
 
