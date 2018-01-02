@@ -14,6 +14,7 @@
         <!--style="background-color: rgba(87,182,230,0.75)"-->
 
         <div class="container">
+        
             <a class="navbar-brand" href="../../../../../../../../../JSPProject/index.jsp">
                 SHOP
             </a>
