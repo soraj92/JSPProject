@@ -8069,4 +8069,55 @@ a.text-dark:focus, a.text-dark:hover {
 .invisible {
 	visibility: hidden !important
 }
+
+/* 임시추가 */
+div.photo_list_wrap{
+
+   width:80%;
+   border:1px solid green;
+   overflow:hidden;
+   margin:0 auto;
+
+}
+   
+div.photo_list{
+
+   width:20%;
+   float:left;
+   border:5px solid red;
+   margin-right:0.8%;
+   border-radius : radiys;
+   
+}
+
+div.photo_list:nth-child(3){
+   margin-right:0%;
+   
+}
+
+div.photo_list:nth-child(6){
+   margin-right:0%;
+   
+}
+
+
+
+
+div.photo_list img{
+
+   width:100%;
+   
+}
+
+div.photo_list p.p_title{
+
+   width:100%;
+   float:left;
+   border:1px solid black;
+   text-align:center;
+   margin:0 auto;
+   margin-bottom:20px;
+   padding:10px 0;   
+
+}
 /*# sourceMappingURL=bootstrap.min.css.map */
