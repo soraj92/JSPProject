@@ -1,3 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.awt.Image"%>
+<%@page import="javax.imageio.ImageIO"%>
+<%@page import="java.io.File"%>
 <%@page import="vo.GoodsInfoVO"%>
 <%@page import="java.util.Vector"%>
 <%@page import="dao.GoodsInfoDAO"%>
@@ -224,6 +228,12 @@ main {
 }
 </style>
 <title>Insert title here</title>
+<%-- 바로 index.jsp 를 불러오기 위해'index.com'으로  포워드를 해준다 --%>
+<% 
+Vector<GoodsInfoVO> list =(Vector<GoodsInfoVO>)request.getAttribute("list");
+if(list == null) { %>
+<jsp:forward page="index.com"/>
+<%} %>
 </head>
 <body>
 	<div class="containers">
@@ -264,7 +274,7 @@ main {
 
 				<div class="row">
 				<% 
-				Vector<GoodsInfoVO> list = null;
+		/* 	 	Vector<GoodsInfoVO> list = null;
 				
 				if(request.getAttribute("list")== null) { 
 				GoodsInfoDAO dao = new GoodsInfoDAO();
@@ -272,14 +282,24 @@ main {
 				}else 
 				{
 				list =(Vector<GoodsInfoVO>)request.getAttribute("list"); 
-				}
+				}  */
+				
 				
 				for(GoodsInfoVO i : list) { %>
 						<%-- 상품 list --%>
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
 						<%-- 사진 첨부의 경우.. 이름만 가져오면 되지 않나? --%>
-							<a href="content.do"><img class="card-img-top" src="img/<%=i.getImg()%>"       
+						<% 
+						
+/* 						String rootPath =  request.getSession().getServletContext().getRealPath("/");
+						String imgPath =rootPath+"imgupload/"+i.getImg();
+						out.print(imgPath); */
+						
+						%>
+						
+						
+							<a href="content.do"><img class="card-img-top" src="imgupload/<%=i.getImg()%>"       
 								alt=""></a>
 
 							<div class="card-body">
@@ -288,7 +308,14 @@ main {
 									<a href="content.do"><%=i.getBoard_subject()%></a>
 								</h4>
 								<%-- 희망 가격 --%>
-								<h5><%=i.getPrice()%></h5>
+								<%
+								int num = i.getPrice();
+								DecimalFormat df = new DecimalFormat("#,##0");
+								String price = df.format(num);
+								%>
+								
+								<h5>￦<%=price%></h5>
+								
 								<%-- 상품 설명 --%>
 								<p class="card-text"><%=i.getGoods_info()%></p>
 							</div>

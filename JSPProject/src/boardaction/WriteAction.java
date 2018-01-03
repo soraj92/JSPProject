@@ -35,6 +35,7 @@ public class WriteAction implements Action {
 			GoodsInfoVO vo = new GoodsInfoVO();
 			
 			vo.setImg(multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
+			//vo.setImg_path(uploadPath+"\\"+multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
 			vo.setUsername(multi.getParameter("username"));
 			vo.setBoard_subject(multi.getParameter("board_subject"));
 			vo.setPrice(Integer.parseInt(multi.getParameter("price")));
@@ -46,6 +47,7 @@ public class WriteAction implements Action {
 			vo.setTrade_state(Integer.parseInt(multi.getParameter("trade_state"))); // 거래 현황 
 			
 			System.out.println("여기는 WA :"+multi.getParameter("username"));
+			System.out.println("요기는 WA : "+multi.getOriginalFileName((String) multi.getFileNames().nextElement()));
 			
 			GoodsInfoDAO dao = new GoodsInfoDAO();
 			int result = dao.board_insert(vo);
