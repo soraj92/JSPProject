@@ -127,8 +127,56 @@
 						class="sr-only">Next</span>
 					</a>
 				</div>
+<div class="row">
 
-				<div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item One</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Two</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Three</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+				<%-- <div class="row">
 				<% 
 				Vector<GoodsInfoVO> list = null;
 				
@@ -141,27 +189,27 @@
 				}
 				
 				for(GoodsInfoVO i : list) { %>
-						<%-- 상품 list --%>
+						상품 list
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-						<%-- 사진 첨부의 경우.. 이름만 가져오면 되지 않나? --%>
-							<a href="content.do"><img class="card-img-top" src="img/<%=i.getImg()%>"       
+						사진 첨부의 경우.. 이름만 가져오면 되지 않나?
+							<a href="content.do"><img class="card-img-top" src="imgupload/1.PNG>"       
 								alt=""></a>
 
 							<div class="card-body">
 								<h4 class="card-title">
-								<%-- 글 제목  --%>
+								글 제목 
 									<a href="content.do"><%=i.getBoard_subject()%></a>
 								</h4>
-								<%-- 희망 가격 --%>
+								희망 가격
 								<h5><%=i.getPrice()%></h5>
-								<%-- 상품 설명 --%>
+								상품 설명
 								<p class="card-text"><%=i.getGoods_info()%></p>
 							</div>
 						</div>
 					</div>
-					<%} %> <%-- for문 끝 --%>
-				</div>
+					<%} %> for문 끝
+				</div> --%>
 			</div>
 			<form action= "page/write.jsp" method ="post">
 			<input type="submit" value= "글 등록하기">
