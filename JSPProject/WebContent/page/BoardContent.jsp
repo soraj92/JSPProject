@@ -114,13 +114,8 @@
 
 				<main role="main">
 				<div class="jumbotron">
-					<h1 class="display-3">뭐냐</h1>
 					<p class="lead">
 					<img src="imgupload/1.PNG" /></p>
-					<p>
-						<a class="btn btn-lg btn-success" href="#" role="button">Sign
-							up today</a>
-					</p>
 				</div>
 
 				<div class="row marketing">

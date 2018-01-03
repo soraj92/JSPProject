@@ -24,7 +24,7 @@ public class BoardDAO {
 		BoardVO vo = null;
 		
 		con = getConnection();
-		String sql = "select * from boardtbl where product_type = ?";
+		String sql = "select * from boardtbl where product_type = ? order by board_num desc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -40,7 +40,6 @@ public class BoardDAO {
 				String img = rs.getString("img");
 				vo = new BoardVO(board_num, board_subject, price, goods_info, img);
 				list.add(vo);
-				System.out.println(vo);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
