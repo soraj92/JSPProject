@@ -1,5 +1,7 @@
 package boardaction;
 
+import java.util.Vector;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,24 +10,28 @@ import basic.ActionForward;
 import dao.BoardDAO;
 import vo.BoardVO;
 
-public class MoveAction implements Action {
+public class BoardListAction implements Action{
 
 	private String path;
 	
-	public MoveAction(String path) {
+	
+	public BoardListAction(String path) {
 		super();
 		this.path = path;
 	}
 
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		BoardDAO dao = new BoardDAO();
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		BoardVO vo = dao.getBoard(board_num);//board_num
+		Vector<BoardVO> list = new Vector<BoardVO>();
 		
-		request.setAttribute("vo", vo);
-		System.out.println(vo);
-		return new ActionForward(path,false);
+		String produt_type = request.getParameter("product_type");
+		list = dao.getList(produt_type);
+		
+		request.setAttribute("list", list);
+		
+		return new ActionForward(path, false);
 	}
 
 }

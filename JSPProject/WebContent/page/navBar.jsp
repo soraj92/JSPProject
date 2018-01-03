@@ -1,42 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<!--<nav class="navbar navbar-expand-md navbar-dark navbar-light fixed-top"-->
+<!--style="box-shadow:0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08)">-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div class="pos-f-t">
 
-
-    <nav class="navbar navbar-expand-md navbar-dark navbar-light fixed-top" id="navBar">
-
-        <!--style="background-color: rgba(87,182,230,0.75)"-->
-
-        <div class="container">
-            <a class="navbar-brand" href="../../../../../../../../../JSPProject/index.jsp">
-                SHOP
-            </a>
-
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                    data-target="#navbarsExampleDefault"
-                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <i class="fa fa-user-o" aria-hidden="true"></i>
-
-            <div class="navbar-collapse collapse" id="navbarsExampleDefault">
-               
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-list"></i>
+            <%--<span class="navbar-toggler-icon"></span>--%>
+        </button>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
             </div>
             <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;
             <button class="btn btn-primary" onclick="window.open('page/login.jsp')">로그인</button></a>
 			<a role="button" aria-disabled="true"><button class="btn btn-secondary" onclick="window.open('page/register.jsp')">회원가입</button></a>
-			
         </div>
     </nav>
-</body>
-</html>
+
+</div>
+</nav>

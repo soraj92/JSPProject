@@ -1,113 +1,111 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jo
-  Date: 2017-12-25
-  Time: 오전 4:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@page import="vo.BoardVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype>
+<html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/toolTip.css">
+    <style>
+	 /*    .card-body {
+	    -ms-flex: 1 1 auto;
+	    flex: 1 1 auto;
+	    padding: 1.25rem;
+	} */
+        .containers {
+            display: flex;
+            flex-direction: column;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/a.css">
-<style>
-#navBar {
-	box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.125), 0 4px 5px 0
-		rgba(0, 0, 0, 0.125), 0 1px 10px 0 rgba(0, 0, 0, 0.300);
-	background-color: rgba(87, 182, 230, 0.75);
-}
+        header {
+            border-bottom: 1px solid gray;
+            padding-left: 20px;
+        }
 
-.containers {
-	display: flex;
-	flex-direction: column;
-}
+        footer {
+            border-top: 1px solid gray;
+            padding: 20px;
+            text-align: center;
+        }
 
-header {
-	padding-top: 5.5rem;
-}
+        .contents {
+            display: flex;
+            /*content: '';*/
+            justify-content: center;
 
-footer {
-	border-top: 1px solid gray;
-	padding: 20px;
-	text-align: center;
-}
+        }
 
-.content {
-	display: flex;
-	padding-left: 15%;
-}
+        .contents aside {
+            border-right: 1px solid gray;
+        }
 
-.content nav {
-	/* border-right: 1px solid gray; */
-	
-}
+        .contents adBar {
+            border-left: 1px solid gray;
+        }
 
-.content main {
-	/* border-right: 1px solid gray; */
-	
-}
+        @media (max-width: 1340px) {
+            .contents {
+                flex-direction: column;
+            }
 
-.content aside {
-	border-left: 1px solid gray;
-}
+            .contents aside, .contents adBar {
+                border: none;
+                flex-basis: auto;
+            }
 
-@media ( max-width : 500px) {
-	.content {
-		flex-direction: column;
-	}
-	.content nav, .content aside {
-		border: none;
-		flex-basis: auto;
-	}
-	main {
-		order: 0;
-	}
-	nav {
-		order: 1;
-	}
-	aside {
-		order: 2;
-		display: none;
-	}
-}
+            main {
+                order: 0;
+            }
 
-nav, aside {
-	flex-basis: 175px;
-	flex-shrink: 0;
-}
+            aside {
+                order: 1;
+            }
 
-main {
-	padding: 10px;
-}
+            adBar {
+                order: 2;
+                display: none;
+            }
+        }
 
-.dropdown {
-	top: 10px;
-	padding-top: 10px;
-	padding-left: 30px;
-}
+        aside, adBar {
+            /*flex-basis: 350px;*/
 
-.container-fluid {color =#FF0000;
-	
-}
-</style>
+        }
 
+        main {
+            flex-basis: 1040px;
+            flex-shrink: 0;
+            padding: 10px;
+        }
+
+        header {
+            padding-top: 2.5rem;
+        }
+
+        .navmenu-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: rgba(0, 0, 0, .03);
+            border-bottom: 1px solid rgba(0, 0, 0, .125)
+        }
+
+    </style>
 </head>
 <body>
-	<div class="containers">
-		<header>
-			<%@include file="navBar.jsp"%>
-		</header>
-		<div class="content">
-			<nav>
-				<jsp:include page="catagory.jsp"></jsp:include>
-			</nav>
-			<main> <%
- 	BoardVO vo = (BoardVO) request.getAttribute("vo");
+<div class="containers">
+    <header>
+    <jsp:include page="navBar.jsp"></jsp:include>
+    </header>
+    <section class="contents">
+        <aside>
+        <jsp:include page="asideBar.jsp"></jsp:include>
+        </aside>
+        <main>
+<%
+ 			BoardVO vo = (BoardVO) request.getAttribute("vo");
+			
  %>
 			<div class="container">
 				<div>
@@ -117,9 +115,8 @@ main {
 				<main role="main">
 				<div class="jumbotron">
 					<h1 class="display-3">뭐냐</h1>
-					<p class="lead">Cras justo odio, dapibus ac facilisis in,
-						egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor
-						mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+					<p class="lead">
+					<img src="imgupload/1.PNG" /></p>
 					<p>
 						<a class="btn btn-lg btn-success" href="#" role="button">Sign
 							up today</a>
@@ -160,23 +157,27 @@ main {
 					</div>
 				</div>
 
-				</main>
-			</div>
-			</main>
+        </main>
+<%--         <adBar>
+            <%@include file="asideBar.jsp" %>
+        </adBar> --%>
+    </section>
+    <footer>
+        <a href="https://opentutorials.org/course/1">홈페이지</a>
 
-		</div>
-	</div>
+    </footer>
+</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-		crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
 </body>
 </html>

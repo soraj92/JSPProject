@@ -1,6 +1,7 @@
 package control;
 
 import basic.Action;
+import boardaction.BoardListAction;
 import boardaction.MoveAction;
 
 public class BoardFactory {
@@ -21,6 +22,10 @@ public class BoardFactory {
 		if(cmd.equals("/content.do"))
 		{
 			action = new MoveAction("page/BoardContent.jsp");
+		}else if(cmd.equals("/boardList.do"))
+		{
+			System.out.println("?");
+			action = new BoardListAction("page/BoardList.jsp");
 		}
 		return action;
 	}

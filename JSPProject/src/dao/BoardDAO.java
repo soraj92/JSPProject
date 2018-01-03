@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,7 +18,38 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	DataSource ds = null;
 	
-	
+	public Vector<BoardVO> getList(String product)
+	{
+		Vector<BoardVO> list = new Vector<BoardVO>();
+		BoardVO vo = null;
+		
+		con = getConnection();
+		String sql = "select * from boardtbl where product_type = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				int board_num = rs.getInt("board_num");
+				String board_subject = rs.getString("board_subject");
+				int price = rs.getInt("price");
+				String goods_info = rs.getString("goods_info");
+				String img = rs.getString("img");
+				vo = new BoardVO(board_num, board_subject, price, goods_info, img);
+				list.add(vo);
+				System.out.println(vo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	public BoardVO getBoard(int board_num)
 	{
 		BoardVO vo = null;
@@ -45,7 +77,7 @@ public class BoardDAO {
 				int trade_state  = rs.getInt("trade_state"); // 거래 현황
 				
 				
-				vo = new BoardVO(board_num, board_subject, username, price, choice_way,product_type,
+				vo = new BoardVO(board_num, username, board_subject, price, choice_way,product_type,
 						purchasing_time, trade_area, goods_info, img, board_date, trade_state);
 			}
 		} catch (SQLException e) {
