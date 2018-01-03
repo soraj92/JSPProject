@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="vo.ListPageVO"%>
 <%@page import="vo.GoodsInfoVO"%>
 <%@page import="java.util.Vector"%>
 <%@page import="dao.GoodsInfoDAO"%>
@@ -105,7 +107,23 @@
         <jsp:include page="page/asideBar.jsp"></jsp:include>
         </aside>
         <main>
-
+ <%
+Vector<GoodsInfoVO> list =(Vector<GoodsInfoVO>)request.getAttribute("list");
+if(list == null) { %>
+<jsp:forward page="index.com"/>
+<!-- 페이지 나누기 위한 정보 -->
+<%}
+//검색에서 넘어온 경우
+/* String category =(String)request.getAttribute("category"); // 검색조건 (카테고리별 )
+String searchword = (String)request.getAttribute("searchword"); // 검색 단어
+*/
+ListPageVO page_info = (ListPageVO)request.getAttribute("page_info");
+int total_page = page_info.getTotal_page();
+int start_page =page_info.getStart_page();
+int end_page = page_info.getEnd_page();
+int current_page =page_info.getPage();
+int total_rows= page_info.getTotal_rows();
+%>
        <div class="col-lg-9">
 
 				<div id="carouselExampleIndicators" class="carousel slide my-4"
@@ -131,53 +149,108 @@
 						class="carousel-control-next-icon" aria-hidden="true"></span> <span
 						class="sr-only">Next</span>
 					</a>
-				</div>
+						</div>
+				
 <div class="row">
+			<% 
+			 	/* Vector<GoodsInfoVO> list = null;
+				if(request.getAttribute("list")== null) { 
+				GoodsInfoDAO dao = new GoodsInfoDAO();
+				list = dao.getMainList();
+				}else 
+				{
+				list =(Vector<GoodsInfoVO>)request.getAttribute("list"); 
+				}   */
+
+				for(GoodsInfoVO i : list) { %>
+						<%-- 상품 list --%>
 
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <a href="content.do?board_num=<%=i.getBoard_num()%>"><img class="card-img-top" src="imgupload/<%=i.getImg() %>" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Item One</a>
+                  <%-- 글제목 --%>
+                    <a href="content.do?board_num=<%=i.getBoard_num()%>"><%=i.getBoard_subject()%></a>
                   </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                </div>
-              </div>
-            </div>
+                  <%-- 희망 가격 --%>
+                  <h5><%=NumberFormat.getCurrencyInstance().format(i.getPrice())%></h5>
+                  
+                  <%-- 상품 설명 --%>
+                  <p class="card-text"><%=i.getGoods_info()%></p>
+                </div> <%-- card-body --%>
+              </div> <%-- card --%>
+            </div> <%-- col-lg-4 col-md-6 mb-4 --%>
 
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body" style="">
-                  <h4 class="card-title">
-                    <a href="#">Item Two</a>
-                  </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">Item Three</a>
-                  </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                </div>
-              </div>
-            </div>
+			<%} %> <%-- for문 끝 --%>
+			</div> <%-- class = row --%>
+			</div> <%-- col-9 --%>
 			
-			</div>
+
 			<form action= "page/write.jsp" method ="post">
 			<input type="submit" value= "글 등록하기">
 			</form>
 
+					<%// if(searchword == null){
+						//검색 기능 추가했을경우 if문 안에다가 넣어주기
+						// [이전]
+								if(current_page<=1){
+									out.print("[이전]");
+								}else{
+									out.print("<a href=index.com?page="+(current_page-1)+">");
+									out.print("[이전]</a>");
+								}
+						
+						for(int i =start_page; i<=end_page; i++)
+						{
+							if(i == current_page){
+								out.print("["+i+"]");
+							}else
+							{
+								out.print("<a href=index.com?page="+i+">");
+								out.print(i+"</a>");
+							}
+						}
+						if(current_page>=total_page)
+						{
+							out.print("[다음]");
+						}else{
+							out.print("<a href=index.com?page="+(current_page+1)+">");
+							out.print("[다음]</a>");
+						}
+					 
+					
+						// 검색기능 추가했을경우 이 부분을 else 에 담아주기, 경로 이름 다시 설정해 주기 ! 
+				/* 		//[이전] 나오게 하기
+					}else{
+					if(current_page<=1){
+				}
+							out.print("[이전]");
+						}else {
+							out.print("<a href=qSearch.do?page="+(current_page-1)+"&board="+board+"&searchword="+searchword+">");
+							out.print("[이전]</a>");
+						}
+			
+				
+					for(int i =start_page; i <=end_page; i++ )
+					{
+						if( i==current_page){
+							out.print("["+i+"]");
+						}else{
+							out.print("<a href = qSearch.do?page="+i+"&board="+board+"&searchword="+searchword+">");
+							out.print(i+"</a>");
+						}
+					}
+					
+					if(current_page >=total_page){
+						out.print("[다음]");
+					}else {
+						out.print("<a href=qSearch.do?page="+(current_page+1)+"&board="+board+"&searchword="+searchword+">");
+						out.print("[다음]</a>");
+					}
+					}
+						 */%>
+		
         </main>
 <%--         <adBar>
             <%@include file="asideBar.jsp" %>

@@ -105,7 +105,6 @@
         <main>
 <%
  			BoardVO vo = (BoardVO) request.getAttribute("vo");
-			
  %>
 			<div class="container">
 				<div>
@@ -115,7 +114,7 @@
 				<main role="main">
 				<div class="jumbotron">
 					<p class="lead">
-					<img src="imgupload/1.PNG" /></p>
+					<img src="imgupload/<%=vo.getImg() %>" /></p>
 				</div>
 
 				<div class="row marketing">

@@ -40,6 +40,7 @@ public class BoardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("인ㅇ");
 		doGet(request, response);
 	}
 

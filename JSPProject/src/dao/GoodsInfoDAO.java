@@ -101,7 +101,7 @@ public class GoodsInfoDAO {
 	public int total_rows() {
 		int total_rows = 0;
 		con = getConnection();
-		String sql = "select count(*) from board"; // 전체 레코드의 개수를 세어 줌
+		String sql = "select count(*) from boardtbl"; // 전체 레코드의 개수를 세어 줌
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -118,27 +118,28 @@ public class GoodsInfoDAO {
 	}
 
 	// main 리스트 가져오기---------------------------------------------------------------------------
-	public Vector<GoodsInfoVO> getMainList() {
+	public Vector<GoodsInfoVO> getMainList(int page, int limit) {
+		int start =(page -1)*10;
 		Vector<GoodsInfoVO> list = new Vector<GoodsInfoVO>();
 		GoodsInfoVO vo = null;
 		con = getConnection();
-		// 페이징처리는 나중에, 우선 뿌리는것 부터 
-		// 무슨 기준으로 가져올 것인가? ? ? 우선은 [카테고리 상관없이] 최신글 기준으로
-		String sql = "select board_num,board_subject,price,img,goods_info from boardtbl order by board_num desc";
+		//String sql = "select board_num,board_subject,price,img,goods_info from boardtbl order by board_num desc";
+		String sql = "select * from boardtbl order by board_num desc limit ?,?";
 		// 메인리스트에서  눈에 보이는 정보는  'board_subject(제목),price(가격),img(이미지)',goods_info(상품설명)
 		try
 		{
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			while(rs.next())
 			{
 				vo = new GoodsInfoVO();
-				vo.setBoard_num(rs.getInt("board_num"));
-				vo.setBoard_subject(rs.getString("board_subject"));
-				vo.setPrice(rs.getInt("price"));
-				vo.setImg(rs.getString("img"));
-				//vo.setImg_path(rs.getString("img_path"));
-				vo.setGoods_info(rs.getString("goods_info"));
+				vo.setBoard_num(rs.getInt("board_num")); // 글번호
+				vo.setBoard_subject(rs.getString("board_subject")); //글제목
+				vo.setPrice(rs.getInt("price"));// 희망가격
+				vo.setImg(rs.getString("img")); // 이미지
+				vo.setGoods_info(rs.getString("goods_info")); // 상품정보
 				list.add(vo);
 			}
 			
@@ -160,8 +161,8 @@ public class GoodsInfoDAO {
 		Vector<GoodsInfoVO>  list = new Vector<GoodsInfoVO>();
 		GoodsInfoVO vo = null;
 		con = getConnection();
-		String sql = "select board_num,board_subject,price,img,goods_info from boardtbl where product-type ="+product_type+"order by board_num desc";
-		
+		//String sql = "select board_num,board_subject,price,img,goods_info from boardtbl where product-type ="+product_type+"order by board_num desc";
+		String sql = "select * from boardtbl where product_type ="+product_type+"order by board_num desc";
 		try
 		{
 		pstmt = con.prepareStatement(sql);
