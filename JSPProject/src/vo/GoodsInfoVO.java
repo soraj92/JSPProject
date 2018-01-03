@@ -12,16 +12,16 @@ public class GoodsInfoVO {
 	private String trade_area; // 거래지역 (직거래일경우에만 사용)
 	private String goods_info;// 상품 정보
 	private String img; // 첨부사진
+//	private String img_path; // 이미지 경로 
 	private String board_date;// 글작성날짜
 	private int trade_state; // 거래 현황 (1: 판매중, 2: 거래중, 3:판매완료)
-	
-	
+	// 나중에 이미지 관리해주는 테이블 따로 만들 수 있다면 만들어 보자 .. 
 	public GoodsInfoVO() {
 		super();
 	}
 
 	public GoodsInfoVO(String username, String board_subject, int price, int choice_way, String product_type,
-			String purchasing_time, String trade_area, String goods_info, String img, String board_date,
+			String purchasing_time, String trade_area, String goods_info, String img,String img_path,String board_date,
 			int trade_state) {
 		super();
 		this.username = username;
@@ -33,9 +33,17 @@ public class GoodsInfoVO {
 		this.trade_area = trade_area;
 		this.goods_info = goods_info;
 		this.img = img;
+	//	this.img_path = img_path;
 		this.board_date = board_date;
-		this.trade_state = trade_state;
+		this.trade_state = trade_state;		
 	}
+/*	public String getImg_path() {
+		return img_path;
+	}
+
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}*/
 	
 	public int getTrade_state() {
 		return trade_state;
