@@ -11,6 +11,11 @@
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/toolTip.css">
     <style>
+	 /*    .card-body {
+	    -ms-flex: 1 1 auto;
+	    flex: 1 1 auto;
+	    padding: 1.25rem;
+	} */
         .containers {
             display: flex;
             flex-direction: column;
@@ -130,7 +135,7 @@
 <div class="row">
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
@@ -146,9 +151,9 @@
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
+                <div class="card-body" style="">
                   <h4 class="card-title">
                     <a href="#">Item Two</a>
                   </h4>
@@ -162,7 +167,7 @@
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card">
                 <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
@@ -238,7 +243,9 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 
 
-
+<script>
+$('.card-body').css('flex','none');
+</script>
 
 </body>
 </html>
