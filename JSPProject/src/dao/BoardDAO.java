@@ -18,6 +18,59 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	DataSource ds = null;
 	
+	public int UpdateAuctionPrice(int board_num,int price)
+	{
+		int result = 0;
+		con = getConnection();
+		String sql = "update boardtbl set price = ? where board_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, price);
+			pstmt.setInt(2, board_num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	public Vector<BoardVO> getAuctionList(String product)
+	{
+		Vector<BoardVO> list = new Vector<BoardVO>();
+		BoardVO vo = null;
+		
+		con = getConnection();
+		String sql = "select * from boardtbl where product_type = ? order by board_num desc";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				int board_num = rs.getInt("board_num");
+				String board_subject = rs.getString("board_subject");
+				int price = rs.getInt("price");
+				String goods_info = rs.getString("goods_info");
+				String img = rs.getString("img");
+				String endTime = rs.getString("endTime");
+				String startTime = rs.getString("startTime");
+				vo = new BoardVO(board_num, board_subject, price, goods_info, img, endTime, startTime);
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	
 	public Vector<BoardVO> getList(String product)
 	{
 		Vector<BoardVO> list = new Vector<BoardVO>();

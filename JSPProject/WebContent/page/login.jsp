@@ -6,37 +6,49 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<title>Insert title here</title>
+<title>로그인</title>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#checkBtn").on("click", function() {
+    	LoginFunction();
+    });
+});
+
+function LoginFunction(){
+	var userID = $('#userID').val();
+	var userPassword = $('#userPassword').val();
+
+	$.ajax({
+		type : 'POST',
+		url : '../login.do',
+		//파리미터 변수 이름 : 값
+		data: {userID : userID, userPassword : userPassword},
+		success : function(result){
+			if(result == 1) {
+				opener.location.reload();
+				window.close();
+			}
+		}
+	});
+}
+</script>
 </head>
 <body>
 
-
-	<!-- <nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-		<a class="navbar-brand" href="main.jsp">jsp 게시판 웹사이트</a>
-		</div>
-	</nav> -->
 	
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
 			<div class="jumbotron" style="padding-top: 20px;">
-				<form method="post" action="loginAction.jsp">
+				<form method="post" action="../login.do">
 					<h3 style="text-align: center;">로그인화면</h3>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
+						<input type="text" class="form-control" placeholder="아이디" id="userID" maxlength="20">
 					</div>
 					<div class="form-group">	
-						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
+						<input type="password" class="form-control" placeholder="비밀번호" id="userPassword" maxlength="20">
 					</div>
-					<input type="submit" class="btn btn-primary form-control" value="로그인">
+					<input type="button" id="checkBtn" class="btn btn-primary form-control" value="로그인" onclick="LoginFunction()">
 				</form>
 		</div>
 	</div>

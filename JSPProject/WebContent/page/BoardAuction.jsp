@@ -3,11 +3,12 @@
 <%@page import="java.util.Vector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,11 +18,6 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/toolTip.css">
 <style>
-/*    .card-body {
-	    -ms-flex: 1 1 auto;
-	    flex: 1 1 auto;
-	    padding: 1.25rem;
-	} */
 .containers {
 	display: flex;
 	flex-direction: column;
@@ -94,6 +90,65 @@ header {
 	border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
 </style>
+<title>Insert title here</title>
+<% Vector<Integer> time = (Vector<Integer>)request.getAttribute("time");
+	int a = 0;
+	int j = 0;
+	int trr[] = new int[9];
+	for(int t : time)
+	{
+		trr[j] = t;
+		System.out.println(trr[j]);
+		j++;
+	}
+		j = 0;
+
+	String[] str = {"time1","time2","time3","time4","time5","time6","time7","time8","time9"};
+	String[] priceStr = {"price1","price2","price3","price4","price5","price6","price7","price8","price9"};
+%>
+
+<script>
+		var openWin;
+		
+		function openChild(i)
+		{
+			window.name = "parent";
+			var num = i;
+			openWin = window.open('page/Auction.jsp?num='+num, 'child' , 'width=500px, height=300px');
+		}
+		var Time = new Array(<%=trr[0]%>, <%=trr[1]%>,<%=trr[2]%>,<%=trr[3]%>,<%=trr[4]%>,<%=trr[5]%>);
+		
+		function msg_time() {	// 1초씩 카운트
+			<%for(int i = 0; i < 9; i++)
+				{%>
+				
+			if(Time[<%=i%>]>3600)
+				m = Math.floor(Time[<%=i%>]/3600) + "시간 " + Math.floor(Time[<%=i%>]%3600/60) + "분 " + (Time[<%=i%>] % 60) + "초";	// 남은 시간 계산
+			else if(Time[<%=i%>] >= 60)
+				m = Math.floor(Time[<%=i%>]%3600/60) + "분 " + (Time[<%=i%>] % 60) + "초";
+			else
+				m = (Time[<%=i%>] % 60) + "초";
+
+			if(Time[<%=i%>]<300)
+				var msg = "<h2><font color='red'>" + m + "</font></h2>";
+			else
+				var msg = "<h2><font color='black'>" + m + "</font></h2>";
+			
+			if (Time[<%=i%>] < 0) {			// 시간이 종료 되었으면..
+				
+				//clearInterval(tid);		// 타이머 해제
+				msg = "<h2>종료</h2>";
+			}
+			document.all.<%=str[i]%>.innerHTML = msg;		// div 영역에 보여줌 
+					
+			Time[<%=i%>]--;					// 1초씩 감소
+			<%}%>
+		}
+
+		window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
+		
+	</script>
+
 </head>
 <body>
 	<%
@@ -110,44 +165,43 @@ header {
 				<jsp:include page="asideBar.jsp"></jsp:include>
 			</aside>
 			<main>
-
 			<div class="row">
-
-				<%
+			<%
+				int i = 0;
 					if (list != null)
 						for (BoardVO vo : list) {
+							//￦
 				%>
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="card" style="height: 31.25rem">
-						<a href="content.do?board_num=<%=vo.getBoard_num()%>" style="height: 20rem"><img class="card-img-top"
-							src="imgupload/<%=vo.getImg()%>" alt="?" style="max-height: 20rem"></a>
+						<a href="content.do?board_num=<%=vo.getBoard_num()%>" style="height: 20rem">
+						<img class="card-img-top" src="imgupload/<%=vo.getImg() %>" alt="Card image cap" style="max-height: 20rem">
+						</a>
 						<div class="card-body">
-							<h4 class="card-title">
-								<a href="content.do?board_num=<%=vo.getBoard_num()%>"><%=vo.getBoard_subject()%></a>
-							</h4>
-							<h5><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h5>
+							<h5 class="card-title"><%=vo.getBoard_subject()%></h5>
 							<p class="card-text"><%=vo.getGoods_info()%></p>
+							<input type = "hidden" id = "<%=priceStr[i]+"_board_Num"%>" value = "<%=vo.getBoard_num()%>"/>
+							<input type = "hidden" id = "<%=priceStr[i]%>" value = "<%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%>"/>
+							<h4><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h4>
+						</div>
+						<div class="card-body">
+							<div id="<%=str[i]%>"></div>
+						</div>
+						<div class="card-body">
+						<input type = "button" onclick = "openChild(<%=i %>)" value = "참여하기"/>
+						<input type = "hidden" id = "<%=i%>" value = "<%=i%>"/>
+							<!-- <a href="#"
+								class="card-link">Another link</a> -->
 						</div>
 					</div>
 				</div>
 				<%
+					i++;
 					}
 				%>
-
-
-			</div>
-			<form action="page/write.jsp" method="post">
-				<input type="submit" value="글 등록하기">
-			</form>
+				</div>
 			</main>
-			<%--         <adBar>
-            <%@include file="asideBar.jsp" %>
-        </adBar> --%>
 		</section>
-		<footer>
-			<a href="https://opentutorials.org/course/1">홈페이지</a>
-
-		</footer>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -163,10 +217,5 @@ header {
 		crossorigin="anonymous"></script>
 	<script defer
 		src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
-
-	<script>
-		$('.card-body').css('flex', 'none');
-	</script>
-
 </body>
 </html>

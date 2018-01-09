@@ -20,10 +20,10 @@
         <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne"
              data-parent="#accordion">
             <div class="card-body">
-                <span style="display: block;"><a href="boardList.do?product_type=C-T">상의</a></span>
-                <span><a href="boardList.do?product_type=C-B">하의</a></span>
-                <span style="display: block;"><a href="boardList.do?product_type=C-A">한벌 옷</a></span>
-                <span><a href="boardList.do?product_type=C-O">아우터</a></span>
+                <span style="display: block;"><a href="boardList.do?product_type=clothes-top">상의</a></span>
+                <span><a href="boardList.do?product_type=clothes-bottom">하의</a></span>
+                <span style="display: block;"><a href="boardList.do?product_type=clothes-overall">한벌 옷</a></span>
+                <span><a href="boardList.do?product_type=clothes-outerwear">아우터</a></span>
             </div>
         </div>
     </div>
@@ -40,17 +40,17 @@
         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
              data-parent="#accordion">
             <div class="card-body">
-               <span style="display: block;"><a href="boardList.do?product_type=P-B">가방</a></span>
-                <span><a href="boardList.do?product_type=P-S">신발</a></span>
-                <span style="display: block;"><a href="boardList.do?product_type=P-H">모자</a></span>
-                <span><a href="boardList.do?product_type=P-O">기타</a></span>
+               <span style="display: block;"><a href="boardList.do?product_type=accessory-bag">가방</a></span>
+                <span><a href="boardList.do?product_type=accessory-shoes">신발</a></span>
+                <span style="display: block;"><a href="boardList.do?product_type=accessory-hat">모자</a></span>
+                <span><a href="boardList.do?product_type=accessory-etc-accessory">기타</a></span>
             </div>
         </div>
     </div>
     <div>
         <div class="navmenu-header" role="tab" id="headingThree">
            <h6>
-               <a href="boardList.do?product_type=S">스포츠</a>
+               <a href="boardList.do?product_type=sports">스포츠</a>
             </h6>
         </div>
     </div>
@@ -58,14 +58,21 @@
     <div>
         <div class="navmenu-header" role="tab" id="headingThree">
             <h6>               
-                <a href="boardList.do?product_type=D"> 디지털/가전</a>
+                <a href="boardList.do?product_type=electronics"> 디지털/가전</a>
             </h6>
         </div>
     </div>
     <div>
         <div class="navmenu-header" role="tab" id="headingThree">
             <h6>
-               <a href="boardList.do?product_type=O">기타</a>
+               <a href="boardList.do?product_type=etc">기타</a>
+            </h6>
+        </div>
+    </div>
+    <div>
+        <div class="navmenu-header" role="tab" id="headingThree">
+            <h6>
+               <a href="boardList.do?product_type=auction">경매장</a>
             </h6>
         </div>
     </div>
