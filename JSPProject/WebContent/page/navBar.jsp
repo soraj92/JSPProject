@@ -32,7 +32,8 @@
 				if (session.getAttribute("isLogin") != null) {
 			%>
 			<font size="5em" color="white" ><%= session.getAttribute("isLogin") %>님 환영합니다.</font>>
-			<button class="btn btn-primary" onclick="window.open('page/memberchange.jsp')">개인정보 수정</button>
+			<form action = "myPage.com" method ="post">
+			<input type="submit" class="btn btn-primary" value="내정보" /></form>
 			<a role="button" aria-disabled="true"><button class="btn btn-secondary" onclick="window.open('page/logout.jsp')">로그아웃</button></a>
 			<%
 				} else {
@@ -49,6 +50,4 @@
 
 		</div>
     </nav>
-
 </div>
-</nav>

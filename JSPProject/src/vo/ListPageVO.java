@@ -1,11 +1,11 @@
 package vo;
 
 public class ListPageVO {
-	private int page;
-	private int total_page;
-	private int start_page;
-	private int end_page;
-	private int total_rows;
+	private int page; // 사용자가 선택한 페이지 번호
+	private int total_page; //  전체 페이지 수 
+	private int start_page; // 시작 페이지
+	private int end_page; // 끝나는 페이지
+	private int total_rows; // 한페이지에 가져오는 행 수 
 	public int getPage() {
 		return page;
 	}

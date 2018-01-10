@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import vo.BoardVO;
+import vo.GoodsInfoVO;
 
 public class BoardDAO {
 	private Connection con = null;
@@ -36,6 +37,35 @@ public class BoardDAO {
 		}
 		
 		return result;
+	}
+	
+	public void insertArticle(GoodsInfoVO vo) {
+		System.out.println("db start for insert");
+		con = getConnection();
+		String sql = "INSERT INTO BoardTbl (username, board_subject, price, choice_way, product_type, purchasing_time, trade_area, goods_info, img, board_date, trade_state) VALUES (?,?,?,?,?,?,?,?,?,now(),1)";
+		try {
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, vo.getUsername()); // 작성자
+			pstmt.setString(2, vo.getBoard_subject()); // 글 제목
+			pstmt.setInt(3, vo.getPrice()); // 가격
+			pstmt.setInt(4, vo.getChoice_way()); // 거래유형 선택
+			pstmt.setString(5, vo.getProduct_type()); // 상품 분류
+			pstmt.setString(6, vo.getPurchasing_time());//구입한 시기
+			pstmt.setString(7, vo.getTrade_area());  //거래지역
+			pstmt.setString(8, vo.getGoods_info()); //상품 정보
+			pstmt.setString(9, vo.getImg()); //첨부 사진 이름
+			//TODO 로그인 완료 되면 username 받아 받아오도록 수정 - (id 받아 오도록 수정 되었음)
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+            System.out.println("Error  ArticleInsert Fail");
+		} finally {
+			close(pstmt);
+			close(con);
+
+		}
+
 	}
 	public Vector<BoardVO> getAuctionList(String product)
 	{
@@ -69,18 +99,23 @@ public class BoardDAO {
 		
 		return list;
 	}
+	//------------------------------------------------------
 	
-	public Vector<BoardVO> getList(String product)
+	public Vector<BoardVO> getList(String product, int page, int limit)
 	{
+		int start =(page-1)*9;
 		Vector<BoardVO> list = new Vector<BoardVO>();
 		BoardVO vo = null;
 		
 		con = getConnection();
-		String sql = "select * from boardtbl where product_type = ? order by board_num desc";
+
+		String sql = "select * from boardtbl where product_type = ? order by board_num desc limit ?,?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, product);
+			pstmt.setInt(2,start);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next())
@@ -90,7 +125,8 @@ public class BoardDAO {
 				int price = rs.getInt("price");
 				String goods_info = rs.getString("goods_info");
 				String img = rs.getString("img");
-				vo = new BoardVO(board_num, board_subject, price, goods_info, img);
+				int trade_state =rs.getInt("trade_state");
+				vo = new BoardVO(board_num, board_subject, price, goods_info, img, trade_state);
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -101,6 +137,11 @@ public class BoardDAO {
 		
 		return list;
 	}
+	
+	
+	
+	
+	
 	public BoardVO getBoard(int board_num)
 	{
 		BoardVO vo = null;
@@ -181,4 +222,9 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 	}
+
+	
+	
+	
+	
 }

@@ -78,8 +78,10 @@ $(document).ready(function() {
 		var userPassword2 = $('#userPassword2').val();
 		if(userPassword1 != userPassword2){
 			$('#passwordCheckMessage').html('비밀번호가 서로 일치하지 않습니다.');
-		}else{
-			$('#passwordCheckMessage').html('비밀번호가 맡아용');
+			$('#passwordCheckMessage').css('color','red');
+		}else if(userPassword1 = userPassword2){
+			$('#passwordCheckMessage').html('비밀번호가 일치합니다.');
+			$('#passwordCheckMessage').css('color','green');
 		}
 	}
 </script>
@@ -134,19 +136,17 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-					
 						<td style="width: 110px;"><h5>성별</h5>
 						<td colspan="2">
 							<div class="form-group" style="text-align: center; margin: 0 auto;">
 									<label class="btn btn-primary">
-										<input type="radio" id="userGender" autocomplete="off" value="남자" checked>남자
+										<input type="radio" id="userGender" name="gender" autocomplete="off" value="남자" checked>남자
 									</label>
 									<label class="btn btn-primary">
-										<input type="radio" id="userGender" autocomplete="off" value="여자">여자
+										<input type="radio" id="userGender" name="gender" autocomplete="off" value="여자">여자
 									</label>
 							</div>
 						</td>
-						
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>이메일</h5>

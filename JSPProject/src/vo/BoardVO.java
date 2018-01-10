@@ -14,7 +14,6 @@ public class BoardVO {
 	private String board_date;// 글작성날짜
 	private int trade_state; // 거래 현황
 	private String endTime;
-	private String startTime;
 	
 	@Override
 	public String toString() {
@@ -36,28 +35,21 @@ public class BoardVO {
 		this.board_date = board_date;			this.trade_state = trade_state;
 	}
 
-	public BoardVO(int board_num, String board_subject, int price, String goods_info, String img) {
+	public BoardVO(int board_num, String board_subject, int price, String goods_info, String img, int trade_state) {
 		this.board_num = board_num;				this.board_subject = board_subject;
 		this.price = price;						this.goods_info = goods_info;
-		this.img = img;
+		this.img = img;							this.trade_state = trade_state;
 	}
-	
 	public BoardVO(int board_num, String board_subject, int price, String goods_info, String img, String endTime) {
 		this.board_num = board_num;				this.board_subject = board_subject;
 		this.price = price;						this.goods_info = goods_info;
 		this.img = img;
 		this.endTime = endTime;	
 	}
-
-	
 	
 	public String getEndTime() {return endTime;}
 
 	public void setEndTime(String endTime) {this.endTime = endTime;}
-
-	public String getStartTime() {return startTime;}
-
-	public void setStartTime(String startTime) {this.startTime = startTime;}
 
 	public int getBoard_num() {return board_num;}
 

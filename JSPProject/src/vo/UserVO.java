@@ -47,17 +47,19 @@ public class UserVO {
 	public void setUserEmail(String userEmail) {
 		UserEmail = userEmail;
 	}
+	
 	public String getUserPhone() {
 		return UserPhone;
 	}
-	public void setUserPhone(String UserPhone) {
-		UserPhone = UserPhone;
+	public void setUserPhone(String userPhone) {
+		UserPhone = userPhone;
+		
 	}
 	public int getUserPoint() {
 		return UserPoint;
 	}
-	public void setUserPoint(int UserPoint) {
-		UserPoint = UserPoint;
+	public void setUserPoint(int userPoint) {
+		UserPoint = userPoint;
 	}
 	
 	

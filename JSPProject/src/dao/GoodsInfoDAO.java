@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import vo.GoodsInfoVO;
 
+
 public class GoodsInfoDAO {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
@@ -116,10 +117,31 @@ public class GoodsInfoDAO {
 		}
 		return total_rows;
 	}
+	// 카테고리별 게시물 수 알아오기 
+
+	public int total_Crows(String product_type) {
+		int total_rows = 0;
+		con = getConnection();
+		String sql = "select count(*) from boardtbl where product_type = ?"; // 전체 레코드의 개수를 세어 줌
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_type);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				total_rows = rs.getInt(1); // 가져온 값 담아주기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+			close(con);
+		}
+		return total_rows;
+	}
 
 	// main 리스트 가져오기---------------------------------------------------------------------------
 	public Vector<GoodsInfoVO> getMainList(int page, int limit) {
-		int start =(page -1)*10;
+		int start =(page -1)*9;
 		Vector<GoodsInfoVO> list = new Vector<GoodsInfoVO>();
 		GoodsInfoVO vo = null;
 		con = getConnection();
@@ -154,27 +176,34 @@ public class GoodsInfoDAO {
 		}
 		return list;
 	}
+	//
 	
-	// 카테고리 별 리스트 뿌려주기 , product_type을 기준으로 리스트를 뿌려준ㄷㅏ.
-	public Vector<GoodsInfoVO> getCategoryList(String product_type)
+	
+	
+	
+	
+	
+	// 인자값으로 받은 유저의 게시글 정보 가져오기 
+	
+	public Vector<GoodsInfoVO> getMyList(String username) // ###### ### ! db 다시 만들때 username -> userID로 바꿔주기  또는 유저이름이나 id 합쳐버리기 
 	{
-		Vector<GoodsInfoVO>  list = new Vector<GoodsInfoVO>();
+		Vector<GoodsInfoVO> list = new Vector<GoodsInfoVO>();
 		GoodsInfoVO vo = null;
 		con = getConnection();
-		//String sql = "select board_num,board_subject,price,img,goods_info from boardtbl where product-type ="+product_type+"order by board_num desc";
-		String sql = "select * from boardtbl where product_type ="+product_type+"order by board_num desc";
+		String sql = "select * from boardtbl where username = ?";
 		try
 		{
+			// board_subject(글제목), trade_state(판매상황), +[ db에 추가하기 ] trade_finish (0 or 1)넣어주기  필요없을것같다
 		pstmt = con.prepareStatement(sql);
-		rs = pstmt.executeQuery();
+		System.out.println(pstmt);
+		pstmt.setString(1, username);
+		rs =pstmt.executeQuery();
 		while(rs.next())
 		{
 			vo = new GoodsInfoVO();
-			vo.setBoard_num(rs.getInt("board_num"));
-			vo.setBoard_subject(rs.getString("board_subject"));
-			vo.setPrice(rs.getInt("price"));
-			vo.setImg(rs.getString("img"));
-			vo.setGoods_info(rs.getString("goods_info"));
+			vo.setBoard_num(rs.getInt("board_num"));// 판매현황 수정을위해 사용
+			vo.setBoard_subject(rs.getString("board_subject"));// 글제목
+			vo.setTrade_state(rs.getInt("trade_state"));// 판매현황
 			list.add(vo);
 		}
 		
@@ -188,8 +217,33 @@ public class GoodsInfoDAO {
 			close(con);
 		}
 		return list;
+		
+	}
+	// trade_state 상태를 바꿔주는 update  
+	
+	public int trade_change(int board_num, int trade_state) {
+		int result = 0;
+		con = getConnection();
+		String sql = "update boardtbl set trade_state = ? where board_num= ?";
+		try
+		{
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, trade_state);
+		pstmt.setInt(2, board_num);
+		result = pstmt.executeUpdate();
+		if(result == 0)
+			System.out.println("trade_change: 실패");
+		
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			
+		}
+		
+		return result;
 	}
 	
 	
-
 }

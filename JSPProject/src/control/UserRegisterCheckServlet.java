@@ -21,5 +21,6 @@ public class UserRegisterCheckServlet extends HttpServlet {
 		rs.setContentType("text/html;charset=UTF-8");
 		String userID = req.getParameter("userID");
 		rs.getWriter().write(new UserDAO().registerCheck(userID)+"");
+		System.out.println("userregistercheckservlet 끝남");
 	} 
 }

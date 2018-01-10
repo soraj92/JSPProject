@@ -1,3 +1,4 @@
+<%@page import="vo.ListPageVO"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="vo.BoardVO"%>
 <%@page import="java.util.Vector"%>
@@ -16,6 +17,7 @@
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/toolTip.css">
+<link rel="stylesheet" href="css/paging.css">
 <style>
 /*    .card-body {
 	    -ms-flex: 1 1 auto;
@@ -100,6 +102,13 @@ header {
 		Vector<BoardVO> list = (Vector<BoardVO>) request.getAttribute("list");
 		String price = "";
 		//NumberFormat.getCurrencyInstance().format(1000000);
+
+		ListPageVO page_info = (ListPageVO) request.getAttribute("Mpage_info");
+		int total_page = page_info.getTotal_page();
+		int start_page = page_info.getStart_page();
+		int end_page = page_info.getEnd_page();
+		int current_page = page_info.getPage();
+		int total_rows = page_info.getTotal_rows();
 	%>
 	<div class="containers">
 		<header>
@@ -118,13 +127,22 @@ header {
 						for (BoardVO vo : list) {
 				%>
 				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card" style="height: 31.25rem">
-						<a href="content.do?board_num=<%=vo.getBoard_num()%>" style="height: 20rem"><img class="card-img-top"
-							src="imgupload/<%=vo.getImg()%>" alt="?" style="max-height: 20rem"></a>
+					<div class="card">
+						<a href="content.do?board_num=<%=vo.getBoard_num()%>"><img
+							class="card-img-top" src="imgupload/<%=vo.getImg()%>" alt="?"></a>
 						<div class="card-body">
 							<h4 class="card-title">
 								<a href="content.do?board_num=<%=vo.getBoard_num()%>"><%=vo.getBoard_subject()%></a>
 							</h4>
+							<div class = "trade_state">
+							<%if(vo.getTrade_state() == 3){ %>
+							<span class ="finish">판매완료</span>
+							<%}else if(vo.getTrade_state() == 2){ %>
+							<span class ="trade">거래중</span>
+							<%}else { %>
+							<span class ="sale">판매중</span>
+							<%} %>
+							</div>
 							<h5><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h5>
 							<p class="card-text"><%=vo.getGoods_info()%></p>
 						</div>
@@ -139,6 +157,37 @@ header {
 			<form action="page/write.jsp" method="post">
 				<input type="submit" value="글 등록하기">
 			</form>
+			<div id ="paging">
+				<%
+					request.setAttribute("product_type",request.getParameter("product_type") );
+								if(current_page<=1){
+									out.print("<span class ='text'>이전</span>");
+								}else{
+									out.print("<a href='boardList.do?page="+(current_page-1)+"&product_type="+request.getAttribute("product_type")+"' class ='prev'>");
+									out.print("이전</a>");
+								}
+						
+						for(int i =start_page; i<=end_page; i++)
+						{
+							if(i == current_page){
+								out.print("<span class = 'text'> "+i+" </span>");
+							}else
+							{
+								out.print("<a href='boardList.do?page="+i+"&product_type="+request.getAttribute("product_type")+"'  class ='num'>");
+								out.print(i+"</a>");
+							}
+						}
+						if(current_page>=total_page)
+						{
+							out.print("<span class ='text'>다음</span>");
+						}else{
+							out.print("<a href='boardList.do?page="+(current_page+1)+"&product_type="+request.getAttribute("product_type")+"' class = 'prev'>");
+							out.print("다음</a>");
+						}
+	
+			%>
+		
+			</div>
 			</main>
 			<%--         <adBar>
             <%@include file="asideBar.jsp" %>

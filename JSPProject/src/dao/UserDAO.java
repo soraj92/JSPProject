@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import vo.UserVO;
+
 public class UserDAO {
 	private Connection con = null;
 	private PreparedStatement ps = null;
@@ -99,8 +101,70 @@ public class UserDAO {
 		return result; //데이터베이스 오류
 	}
 	
+	//회원 아이디가 일치하면 회원 한명에 대한 정보 가져오기
+	public UserVO getUser(String userID) {
+		con = getConnection();
+		String sql="select * from user where userID=?";
+		UserVO vo=null;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userID);
+			System.out.println(userID);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				vo=new UserVO();
+				vo.setUserID(rs.getString("userID"));
+				vo.setUserPassword(rs.getString("userPassword"));
+				vo.setUserName(rs.getString("userName"));
+				vo.setUserAge(rs.getInt("userAge"));
+				vo.setUserGender(rs.getString("userGender"));
+				vo.setUserEmail(rs.getString("userEmail"));
+				vo.setUserPoint(rs.getInt("userPoint"));
+				vo.setUserPhone(rs.getString("userPhone"));
+				System.out.println(vo.getUserPhone());
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
+		
+		
+	}
+
 	
-	
+	public int change(String userPassword , String userEmail , String userPhone , String userID) {
+        con = getConnection();
+        String SQL = "UPDATE USER SET userPassword=? , userEmail=? , userPhone=? WHERE userID=?";
+        int result = 0;
+        try {
+           ps=con.prepareStatement(SQL);
+           System.out.println("회원가입수정테스트");
+           ps = con.prepareStatement(SQL);
+           ps.setString(1, userPassword);
+           ps.setString(2, userEmail);
+           ps.setString(3, userPhone);
+           ps.setString(4, userID);
+           result = ps.executeUpdate();
+           
+           
+           if(result>0)
+              System.out.println("수정");
+           else
+              result = -1;
+              System.out.println("수정실패");
+        }catch (Exception e) {
+           e.printStackTrace();
+        }finally {
+           try {
+              if(rs != null)rs.close();
+              if(ps != null)ps.close();
+           }catch(Exception e) {
+              e.printStackTrace();
+           }
+        }
+        return result; //데이터베이스 오류
+     }
 	public Connection getConnection()
 	{//Connection  -> dbcp (서버가 db와의 connection을 대신 해준다.)		
 		Context ctx;

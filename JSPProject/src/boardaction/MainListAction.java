@@ -31,21 +31,22 @@ public class MainListAction implements Action {
 		
 		if(req.getParameter("page")!= null)
 			page = Integer.parseInt(req.getParameter("page"));
+			System.out.println("page:"+page);
 		// 여러 페이지 중 하나의 페이지를 선택한다면  선택한 페이지의 번호 받아오기
 		
 		//2) 전체 게시물 수 가져오기
 		GoodsInfoDAO dao = new GoodsInfoDAO();
 		int total_rows = dao.total_rows();
-		//3) 한 페이지에 보여줄 목록 갯수 정하기 (한줄에 4개일 때 기준으로 16개)
-		int limit = 10; 
+		//3) 한 페이지에 보여줄 목록 갯수 정하기 (한줄에 3개일 때 기준으로 9개)
+		int limit = 9; 
 		//4) list페이지 하단에 total_page 결정
 		int total_page =(int)((double)total_rows/limit+0.95); 
 		// 몇 페이지가 나오는가 , 전체에서 가져오는 페이지 수 결정 
 		
 		//5) 현재 화면에서 보여줄 start 페이지 구하기
 		// 1~16인 상황에서 [다음] 눌렀을 때 16~32, [이전] 눌렀을 떄는 다시 1~16 으로 돌아간다
-		int start_page =((int)((double)page/10+0.9)-1)*10+1;
-		int end_page =start_page+16-1;
+		int start_page =((int)((double)page/9+0.9)-1)*9+1;
+		int end_page =start_page+9-1;
 		
 		if(end_page> total_page)
 			end_page =total_page; 

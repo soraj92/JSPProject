@@ -104,8 +104,6 @@
 	function setText() {
 		opener.document.getElementById("price1").value = document
 				.getElementById("price").value;
-		/* document.form.action = "../auction.do?product_type=A"
-		documnet.form.submit(); */
 
 		opener.location.reload();
 		window.close();
@@ -154,7 +152,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header" style="background-color:#B2EBF4;">
-						<h4 class="modal-title" id="myModalLabel"></h4>
+						<h4 class="modal-title" id="myModalLabel" style="font-size:3em; color:red"></h4>
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>

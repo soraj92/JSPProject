@@ -15,6 +15,7 @@ public class GoodsInfoVO {
 //	private String img_path; // 이미지 경로 
 	private String board_date;// 글작성날짜
 	private int trade_state; // 거래 현황 (1: 판매중, 2: 거래중, 3:판매완료)
+	
 	// 나중에 이미지 관리해주는 테이블 따로 만들 수 있다면 만들어 보자 .. 
 	public GoodsInfoVO() {
 		super();

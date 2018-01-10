@@ -2,6 +2,8 @@ package control;
 
 import basic.Action;
 import boardaction.MainListAction;
+import boardaction.MyPageAction;
+import boardaction.TradeChangeAction;
 import boardaction.WriteAction;
 
 public class GoodsInfoFactory {
@@ -21,13 +23,18 @@ public class GoodsInfoFactory {
 	public Action formgif(String cmd)
 	{
 		if(cmd.equals("/index.com"))
-		{
-			action =  new MainListAction("index.jsp");
-			
-		}else if(cmd.equals("/write.com")) {
-			
-			action =  new WriteAction("index.com");
-		}
+	      {
+	         action =  new MainListAction("index.jsp");
+	         
+	      }else if (cmd.equals("/myPage.com"))
+	      {
+	         action = new MyPageAction("page/myP.jsp");
+	         
+	      }else if (cmd.equals("/trade_change.com"))
+	      {
+	         action = new TradeChangeAction("myPage.com");
+	         
+	      }
 		
 		return action;
 	}
