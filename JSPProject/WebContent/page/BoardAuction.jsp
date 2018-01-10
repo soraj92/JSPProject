@@ -90,7 +90,7 @@ header {
 	border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
 </style>
-<title>Insert title here</title>
+<title>경매장</title>
 <% Vector<Integer> time = (Vector<Integer>)request.getAttribute("time");
 	int a = 0;
 	int j = 0;
@@ -133,11 +133,15 @@ header {
 				var msg = "<h2><font color='red'>" + m + "</font></h2>";
 			else
 				var msg = "<h2><font color='black'>" + m + "</font></h2>";
-			
+				
 			if (Time[<%=i%>] < 0) {			// 시간이 종료 되었으면..
 				
 				//clearInterval(tid);		// 타이머 해제
 				msg = "<h2>종료</h2>";
+				document.getElementById("end").value = "end";
+			}else
+			{
+				document.end.value = "ing";
 			}
 			document.all.<%=str[i]%>.innerHTML = msg;		// div 영역에 보여줌 
 					
@@ -173,7 +177,7 @@ header {
 							//￦
 				%>
 				<div class="col-lg-4 col-md-6 mb-4">
-					<div class="card" style="height: 31.25rem">
+					<div class="card" style="height: 40rem">
 						<a href="content.do?board_num=<%=vo.getBoard_num()%>" style="height: 20rem">
 						<img class="card-img-top" src="imgupload/<%=vo.getImg() %>" alt="Card image cap" style="max-height: 20rem">
 						</a>
@@ -186,6 +190,7 @@ header {
 						</div>
 						<div class="card-body">
 							<div id="<%=str[i]%>"></div>
+							<input type = "hidden" id = "end" value = ""/>
 						</div>
 						<div class="card-body">
 						<input type = "button" onclick = "openChild(<%=i %>)" value = "참여하기"/>

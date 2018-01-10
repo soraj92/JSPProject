@@ -134,6 +134,7 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
+					
 						<td style="width: 110px;"><h5>성별</h5>
 						<td colspan="2">
 							<div class="form-group" style="text-align: center; margin: 0 auto;">
@@ -145,6 +146,7 @@ $(document).ready(function() {
 									</label>
 							</div>
 						</td>
+						
 					</tr>
 					<tr>
 						<td style="width: 110px;"><h5>이메일</h5>

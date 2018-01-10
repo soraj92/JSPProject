@@ -58,8 +58,7 @@ public class BoardDAO {
 				String goods_info = rs.getString("goods_info");
 				String img = rs.getString("img");
 				String endTime = rs.getString("endTime");
-				String startTime = rs.getString("startTime");
-				vo = new BoardVO(board_num, board_subject, price, goods_info, img, endTime, startTime);
+				vo = new BoardVO(board_num, board_subject, price, goods_info, img, endTime);
 				list.add(vo);
 			}
 		} catch (SQLException e) {

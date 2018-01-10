@@ -42,11 +42,11 @@ public class BoardVO {
 		this.img = img;
 	}
 	
-	public BoardVO(int board_num, String board_subject, int price, String goods_info, String img, String endTime, String startTime) {
+	public BoardVO(int board_num, String board_subject, int price, String goods_info, String img, String endTime) {
 		this.board_num = board_num;				this.board_subject = board_subject;
 		this.price = price;						this.goods_info = goods_info;
 		this.img = img;
-		this.endTime = endTime;					this.startTime = startTime;
+		this.endTime = endTime;	
 	}
 
 	
