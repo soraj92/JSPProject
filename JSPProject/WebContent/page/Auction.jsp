@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -72,15 +73,16 @@ var userID = opener.document.getElementById("userID").value;
 			},
 			success : function(result) {
 				if (result == 1) {
-					opener.location.reload();
+					opener.document.getElementById("price" + <%=num+1%>).value="￦"+price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					opener.document.getElementById("price" + <%=num+1%>+"_show").value="￦"+price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 					window.close();
 				}
 			}
 		});
 	}
 	function getText() {
-	var num =
-<%=num%>
+	var num =<%=num%>
 	document.getElementById("setPrice").value = opener.document
 				.getElementById("price" + (num + 1)).value;
 		document.getElementById("board_num").value = opener.document
@@ -104,13 +106,6 @@ var userID = opener.document.getElementById("userID").value;
 	}
 	function closeWin()
 	{
-		window.close();
-	}
-	function setText() {
-		opener.document.getElementById("price1").value = document
-				.getElementById("price").value;
-
-		opener.location.reload();
 		window.close();
 	}
 </script>

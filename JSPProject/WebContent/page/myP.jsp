@@ -98,6 +98,7 @@ header {
 
 </head>
 <body>
+<%System.out.println( request.getRealPath( request.getContextPath() ) ); %>
 	<div class="containers">
 		<header>
 

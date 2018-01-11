@@ -190,7 +190,8 @@ header {
 							<p class="card-text"><%=vo.getGoods_info()%></p>
 							<input type = "hidden" id = "price<%=(i+1)+"_board_Num"%>" value = "<%=vo.getBoard_num()%>"/>
 							<input type = "hidden" id = "price<%=i+1%>" value = "<%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%>"/>
-							<h4><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h4>
+							<input type = "text" id = "price<%=(i+1)+"_show"%>" style="border:none; font-size:2em"
+							value = "<%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%>" readonly/>
 						</div>
 						<div class="card-body">
 							<div id="time<%=i+1%>"></div> 
