@@ -14,13 +14,13 @@ function categoryChange(e) {
     var electronics = ['디지털/가전'];
     // var value_electronics = [];
     var auction = ["1시간", "6시간", "12시간", "24시간"];
-    var value_auction = ['1hour', '6horus', '12hours', '24hours'];
+    var value_auction = ['1', '6', '12', '24'];
 
     var value_empty = ['empty'];
     var none_select = ['대분류를 선택해 주세요'];
     var target = document.getElementById("small-category");
     if (e.value == "clothes") {                 //의류
-        var d = clothes;
+         var d = clothes;
         var v = value_clothes;
     }
     else if (e.value == "accessory") {          //패션/잡화

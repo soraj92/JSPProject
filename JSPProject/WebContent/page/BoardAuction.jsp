@@ -188,13 +188,13 @@ header {
 						<div class="card-body">
 							<h5 class="card-title"><%=vo.getBoard_subject()%></h5>
 							<p class="card-text"><%=vo.getGoods_info()%></p>
-							<input type = "hidden" id = "<%=priceStr[i]+"_board_Num"%>" value = "<%=vo.getBoard_num()%>"/>
-							<input type = "hidden" id = "<%=priceStr[i]%>" value = "<%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%>"/>
+							<input type = "hidden" id = "price<%=(i+1)+"_board_Num"%>" value = "<%=vo.getBoard_num()%>"/>
+							<input type = "hidden" id = "price<%=i+1%>" value = "<%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%>"/>
 							<h4><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h4>
 						</div>
 						<div class="card-body">
-							<div id="<%=str[i]%>"></div> 
-							<input type = "hidden" id = "<%=end[i]%>" value = ""/>
+							<div id="time<%=i+1%>"></div> 
+							<input type = "hidden" id = "end<%=i+1%>" value = ""/>
 							<input type = "hidden" id = "userID" value = "<%=userID%>"/>
 						</div>
 						<div class="card-body">

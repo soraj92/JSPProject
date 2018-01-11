@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import tools.DateTime;
 import vo.BoardVO;
 import vo.GoodsInfoVO;
 
@@ -18,6 +19,31 @@ public class BoardDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	DataSource ds = null;
+	
+    public void insertAuction(GoodsInfoVO vo) {
+        System.out.println("Auction Insert Start");
+        String a = DateTime.Convert(6);
+        con = getConnection();
+        String sql = "INSERT INTO BoardTbl (username, board_subject, price, choice_way, product_type, purchasing_time, trade_area, goods_info, img, board_date, trade_state, endTime) VALUES (?,?,?,?,?,?,?,?,?,now(),1,?);";
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, vo.getUsername()); // 작성자
+            pstmt.setString(2, vo.getBoard_subject()); // 글 제목
+            pstmt.setInt(3, vo.getPrice()); // 가격
+            pstmt.setInt(4, vo.getChoice_way()); // 거래유형 선택
+            pstmt.setString(5, vo.getProduct_type()); // 상품 분류
+            System.out.println(vo.getProduct_type());
+            pstmt.setString(6, vo.getPurchasing_time());//구입한 시기
+            pstmt.setString(7, vo.getTrade_area()); // 거래지역
+            pstmt.setString(8, vo.getGoods_info());// 상품 정보
+            pstmt.setString(9, vo.getImg());// 첨부 사진 이름
+            pstmt.setString(10,vo.getAuctionEndTime());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	public int UpdateAuctionPrice(int board_num,int price, String userID)
 	{
