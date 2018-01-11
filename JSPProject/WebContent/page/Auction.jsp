@@ -22,7 +22,8 @@
 <style>
 </style>
 <script type="text/javascript">
-
+<%int num = Integer.parseInt((String) request.getParameter("num"));%>
+var userID = opener.document.getElementById("userID").value;
 	function ActionFunction() {
 
 		var price = $('#price').val();//사용자 입력값
@@ -30,7 +31,7 @@
 		var ex_price = $('#setPrice').val();//기본 값
 
 		var end = opener.document
-		.getElementById("end").value;
+		.getElementById("end"+<%=num+1%>).value;
 
 
 		if(end == 'end')
@@ -66,7 +67,8 @@
 			//파리미터 변수 이름 : 값
 			data : {
 				price : price,
-				board_num : board_num
+				board_num : board_num,
+				userID : userID
 			},
 			success : function(result) {
 				if (result == 1) {
@@ -77,7 +79,6 @@
 		});
 	}
 	function getText() {
-<%int num = Integer.parseInt((String) request.getParameter("num"));%>
 	var num =
 <%=num%>
 	document.getElementById("setPrice").value = opener.document
@@ -85,16 +86,20 @@
 		document.getElementById("board_num").value = opener.document
 				.getElementById("price" + (num + 1) + "_board_Num").value;
 		
-		var end = opener.document
-		.getElementById("end").value;
-
+		var end = opener.document.getElementById("end" + (num + 1)).value;
 
 		if(end == 'end')
 		{
 			$('#myModalLabel').html('종료된 상품');
-			$('#content').html('경매가 종료되었습니다. 5초 후 자동 종료 됩니다.');
+			$('#content').html('경매가 종료되었습니다. 잠시 후 자동 종료 됩니다.');
 			$('#myModal').modal('show');
-			setInterval('closeWin()',5000);
+			setInterval('closeWin()',3000);
+		}else if(userID == '')
+		{
+			$('#myModalLabel').html('현재 이용 불가');
+			$('#content').html('로그인 후 이용 가능합니다. 잠시 후 자동 종료 됩니다.');
+			$('#myModal').modal('show');
+			setInterval('closeWin()',3000);
 		}
 	}
 	function closeWin()

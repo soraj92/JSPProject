@@ -59,7 +59,7 @@ public class BoardListAction implements Action{
 			{
 				try {
 					endTime = f.parse(list.elementAt(i).getEndTime());
-					System.out.println(System.currentTimeMillis());
+					System.out.println(endTime);
 					diff = endTime.getTime() - cur;
 					sec = (int) (diff / 1000);
 					time.add(sec);

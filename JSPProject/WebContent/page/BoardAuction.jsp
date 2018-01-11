@@ -98,12 +98,12 @@ header {
 	for(int t : time)
 	{
 		trr[j] = t;
-		System.out.println(trr[j]);
 		j++;
 	}
 		j = 0;
 
 	String[] str = {"time1","time2","time3","time4","time5","time6","time7","time8","time9"};
+	String[] end = {"end1","end2","end3","end4","end5","end6","end7","end8","end9"};
 	String[] priceStr = {"price1","price2","price3","price4","price5","price6","price7","price8","price9"};
 %>
 
@@ -116,7 +116,7 @@ header {
 			var num = i;
 			openWin = window.open('page/Auction.jsp?num='+num, 'child' , 'width=500px, height=300px');
 		}
-		var Time = new Array(<%=trr[0]%>, <%=trr[1]%>,<%=trr[2]%>,<%=trr[3]%>,<%=trr[4]%>,<%=trr[5]%>);
+		var Time = new Array(<%=trr[0]%>, <%=trr[1]%>,<%=trr[2]%>,<%=trr[3]%>,<%=trr[4]%>,<%=trr[5]%>,<%=trr[6]%>,<%=trr[7]%>,<%=trr[8]%>);
 		
 		function msg_time() {	// 1초씩 카운트
 			<%for(int i = 0; i < 9; i++)
@@ -138,10 +138,10 @@ header {
 				
 				//clearInterval(tid);		// 타이머 해제
 				msg = "<h2>종료</h2>";
-				document.getElementById("end").value = "end";
+				document.getElementById("end"+<%=i+1%>).value = "end";
 			}else
 			{
-				document.end.value = "ing";
+				document.getElementById("end"+<%=i+1%>).value = "ing";
 			}
 			document.all.<%=str[i]%>.innerHTML = msg;		// div 영역에 보여줌 
 					
@@ -151,6 +151,7 @@ header {
 
 		window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
 		
+		
 	</script>
 
 </head>
@@ -158,6 +159,9 @@ header {
 	<%
 		Vector<BoardVO> list = (Vector<BoardVO>) request.getAttribute("list");
 		String price = "";
+		String userID = (String)session.getAttribute("isLogin");
+		if(userID == null)
+			userID = "";
 		//NumberFormat.getCurrencyInstance().format(1000000);
 	%>
 	<div class="containers">
@@ -189,8 +193,9 @@ header {
 							<h4><%=NumberFormat.getCurrencyInstance().format(vo.getPrice())%></h4>
 						</div>
 						<div class="card-body">
-							<div id="<%=str[i]%>"></div>
-							<input type = "hidden" id = "end" value = ""/>
+							<div id="<%=str[i]%>"></div> 
+							<input type = "hidden" id = "<%=end[i]%>" value = ""/>
+							<input type = "hidden" id = "userID" value = "<%=userID%>"/>
 						</div>
 						<div class="card-body">
 						<input type = "button" onclick = "openChild(<%=i %>)" value = "참여하기"/>

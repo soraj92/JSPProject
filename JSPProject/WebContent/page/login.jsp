@@ -17,7 +17,6 @@ $(document).ready(function() {
 function LoginFunction(){
 	var userID = $('#userID').val();
 	var userPassword = $('#userPassword').val();
-
 	$.ajax({
 		type : 'POST',
 		url : '../login.do',
@@ -27,6 +26,9 @@ function LoginFunction(){
 			if(result == 1) {
 				opener.location.reload();
 				window.close();
+			}else
+			{
+				alert("아이디와 비밀번호를 확인해 주세요.");
 			}
 		}
 	});

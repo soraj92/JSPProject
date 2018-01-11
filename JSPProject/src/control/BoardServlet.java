@@ -35,8 +35,12 @@ public class BoardServlet extends HttpServlet {
 			UserDAO dao = new UserDAO();
 			int result = dao.login(id, password);
 			HttpSession session = request.getSession();
-			session.setAttribute("isLogin", id);
-			response.getWriter().write(result+"");
+			
+			if(result == 1)
+				session.setAttribute("isLogin", id);
+			
+			response.getWriter().print(result);
+			return;
 			
 		}
 		else

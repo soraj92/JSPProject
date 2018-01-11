@@ -18,7 +18,7 @@
 </head>
 <div class="pos-f-t">
 
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-dark fixed-top" style="background-color:#B2EBF4">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-list"></i>
             <%--<span class="navbar-toggler-icon"></span>--%>

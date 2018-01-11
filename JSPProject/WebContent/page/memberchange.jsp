@@ -45,7 +45,7 @@
 					<tr>
 						<td style="width: 110px;"><h5>비밀번호</h5>
 						<td colspan="2">
-						<input class="form-control" type="password" onkeyup="passwordCheckFunction()"; id="userPassword1" name="userPassword1" maxlength="20" value="<%= vo.getUserPassword() %>" required="required" >
+						<input class="form-control" type="password" onkeyup="passwordCheckFunction()"; id="userPassword" name="userPassword" maxlength="20" value="<%= vo.getUserPassword() %>" >
 						</td>
 					</tr>
 					<tr>

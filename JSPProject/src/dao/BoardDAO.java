@@ -19,15 +19,16 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	DataSource ds = null;
 	
-	public int UpdateAuctionPrice(int board_num,int price)
+	public int UpdateAuctionPrice(int board_num,int price, String userID)
 	{
 		int result = 0;
 		con = getConnection();
-		String sql = "update boardtbl set price = ? where board_num = ?";
+		String sql = "update boardtbl set price = ?, acutionID = ? where board_num = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, price);
-			pstmt.setInt(2, board_num);
+			pstmt.setString(2, userID);
+			pstmt.setInt(3, board_num);
 			
 			result = pstmt.executeUpdate();
 			

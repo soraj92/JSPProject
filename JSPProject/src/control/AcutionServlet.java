@@ -24,10 +24,11 @@ public class AcutionServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String price = request.getParameter("price");
 		String board_num = request.getParameter("board_num");
+		String userID = request.getParameter("userID");
 		System.out.println(price);
 		System.out.println(board_num);
 		BoardDAO dao = new BoardDAO();
-		int result = dao.UpdateAuctionPrice(Integer.parseInt(board_num), Integer.parseInt(price));
+		int result = dao.UpdateAuctionPrice(Integer.parseInt(board_num), Integer.parseInt(price), userID);
 		response.getWriter().write(result+"");
 	}
 

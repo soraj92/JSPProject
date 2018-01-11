@@ -21,6 +21,7 @@ public class UserDAO {
 	
 	public int login(String userID, String userPassword) {
 		con = getConnection();
+		int result = 0;
 //		String SQL = "SELECT userPassword FROM user WHERE userID = ? and userPassword";
 		String sql = "SELECT * FROM user WHERE userID = ? and userPassword = ?";
 		try {
@@ -28,14 +29,16 @@ public class UserDAO {
 			ps.setString(1, userID);
 			ps.setString(2, userPassword);
 			rs = ps.executeQuery();
+			
 			if(rs.next()) {
-				return 1; //로그인성공
-			}
+				result = 1; //로그인성공
+			}else
+				result = 0;
 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1; //실패
+		return result; //실패
 	}
 	
 	public int registerCheck(String userID) { //유저 아이디를 받아서 결과로 반환
